@@ -12,41 +12,45 @@
                 $('#speech').textfill({
                     maxFontPixels: 50
                 });
-            });
-            $(".go_2019_arena_map").hide()
-            var ros = new ROSLIB.Ros({
-                url: "ws://10.18.1.10:9090"
-            })
 
-            ros.on("connection", function() {
-                console.log("Connection to websocket server established.")
-            })
+                var ros = new ROSLIB.Ros({
+                    url: "ws://10.18.1.10:9090"
+                })
 
-            ros.on('error', function(error) {
-                console.log('Error connecting to websocket server: ', error);
-            });
+                ros.on("connection", function() {
+                    console.log("Connection to websocket server established.")
+                })
 
-            ros.on('close', function() {
-                console.log('Connection to websocket server closed.');
-            });
+                ros.on('error', function(error) {
+                    console.log('Error connecting to websocket server: ', error);
+                });
 
-            var listener_subscriber = new ROSLIB.Topic({
-                ros : ros,
-                name : "/say",
-                messageType : "std_msgs/String"
-            });
+                ros.on('close', function() {
+                    console.log('Connection to websocket server closed.');
+                });
 
-            listener_subscriber.subscribe(function(message) {
-                console.log('Received message on ' + listener_subscriber.name + ': ' + message.data);
-                localStorage.setItem("speech", message.data);
-                $(".go_2019_speech_recognizer").find( "span" ).text('Lucy: ' + message.data)
+                var listener_subscriber = new ROSLIB.Topic({
+                    ros : ros,
+                    name : "/say",
+                    messageType : "std_msgs/String"
+                });
+
+                listener_subscriber.subscribe(function(message) {
+                    console.log('Received message on ' + listener_subscriber.name + ': ' + message.data);
+                    localStorage.setItem("speech", message.data);
+                    var container = $(".go_2019_speech_recognizer").find( "span.item" );;
+                    m = 'Lucy: ' + message.data;
+                    container.append('<li>' + m + '</li>');
+                });
+
             });
         </script>
     </head>
     <body >
         <div class="main_container">
             <div class='go_2019_speech_recognizer' id="speech" >
-                <span></span>
+                <span class="item"></span>
+
             </div>
             <div class='go_2019_arena_map'>
             </div>
