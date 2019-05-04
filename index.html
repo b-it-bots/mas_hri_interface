@@ -8,6 +8,7 @@
         <script src="scripts/roslib.min.js"></script>
         <script type="text/javascript" >
 
+            $(".go_2019_arena_map").hide()
             var ros = new ROSLIB.Ros({
                 url: "ws://10.18.1.10:9090"
             })
@@ -33,16 +34,14 @@
             listener_subscriber.subscribe(function(message) {
                 console.log('Received message on ' + listener_subscriber.name + ': ' + message.data);
                 localStorage.setItem("speech", message.data);
-                location.reload();
-                var go_2019_speech_recognizer = document.getElementById("#go_2019_speech_recognizer")
-                go_2019_speech_recognizer.value = message.data
+                $(".go_2019_speech_recognizer").text('You said: ' + message.data)
             });
         </script>
     </head>
     <body >
-        <div id='main'>
-            <div id='go_2019_arena_map'></div>
-            <div id='go_2019_speech_recognizer'></div>
-        </div>
+        <div class="main_container">
+            <div class='go_2019_speech_recognizer'></div>
+            <div class='go_2019_arena_map'></div>
+    </div>
     </body>
 </html>
