@@ -5,7 +5,6 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  /* font-size: 50pt; */
 }
 .main_container{
     width: 100%;
@@ -13,29 +12,27 @@ body {
     margin: auto;
     padding: 10px;
     /* background-color: black; */
+    border: 5px solid black;
 }
 
 
 .go_2019_speech_recognizer {
-    width: 50%;
+    max-width: 40%;
     height: 600px;
     float: left;
     word-wrap: break-word;
-    font-size: 5em;
+    font-size: 4em;
     /* text-shadow: 3px 2px blue; */
-    padding: 50px 30px;
+    /* border: 15px solid green; */
+    padding: 50px 10px;
+    margin: 0px 0px;
 }
 
 .go_2019_arena_map{
-    margin-left: 50%;
+    margin-left: 40%;
     height: 600px;
-    background-image:url('../images/arena_layout.png');
+    background-image:url('../images/arena_layout_modified.png');
     background-repeat: no-repeat;
     padding: 50px 10px 10px 10px;
-    width: 50%;
+    width: 55%;
 }
-/* .go_2019_arena_map {
-    width: 100%;
-    height: 100%;
-    float: left;
-} */

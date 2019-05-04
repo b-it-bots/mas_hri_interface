@@ -27,14 +27,14 @@
 
             var listener_subscriber = new ROSLIB.Topic({
                 ros : ros,
-                name : "/speech_recognizer",
+                name : "/say",
                 messageType : "std_msgs/String"
             });
 
             listener_subscriber.subscribe(function(message) {
                 console.log('Received message on ' + listener_subscriber.name + ': ' + message.data);
                 localStorage.setItem("speech", message.data);
-                $(".go_2019_speech_recognizer").text('You said: ' + message.data)
+                $(".go_2019_speech_recognizer").text('Lucy: ' + message.data)
             });
         </script>
     </head>
