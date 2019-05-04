@@ -6,8 +6,13 @@
         <link rel="stylesheet" type="text/css" href="styles/index.css">
         <script src="scripts/jquery-3.3.1.min.js"></script>
         <script src="scripts/roslib.min.js"></script>
+        <script src="scripts/jquery.textfill.min.js"></script>
         <script type="text/javascript" >
-
+            $(function() {
+                $('#speech').textfill({
+                    maxFontPixels: 50
+                });
+            });
             $(".go_2019_arena_map").hide()
             var ros = new ROSLIB.Ros({
                 url: "ws://10.18.1.10:9090"
@@ -34,14 +39,17 @@
             listener_subscriber.subscribe(function(message) {
                 console.log('Received message on ' + listener_subscriber.name + ': ' + message.data);
                 localStorage.setItem("speech", message.data);
-                $(".go_2019_speech_recognizer").text('Lucy: ' + message.data)
+                $(".go_2019_speech_recognizer").find( "span" ).text('Lucy: ' + message.data)
             });
         </script>
     </head>
     <body >
         <div class="main_container">
-            <div class='go_2019_speech_recognizer'></div>
-            <div class='go_2019_arena_map'></div>
+            <div class='go_2019_speech_recognizer' id="speech" >
+                <span></span>
+            </div>
+            <div class='go_2019_arena_map'>
+            </div>
     </div>
     </body>
 </html>
